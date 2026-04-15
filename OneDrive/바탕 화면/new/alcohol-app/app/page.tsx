@@ -41,13 +41,13 @@ const DRINK_SCENES: Record<DrinkId, {
     reactionTone: ['얼음이 잔 안에서 낮게 부딪힌다.', '오크 향이 천천히 길게 남는다.', '음악과 함께 템포가 가라앉는다.'],
   },
   yangju: {
-    name: '호텔 라운지',
-    bg: 'from-slate-950 via-blue-950 to-slate-900',
-    tableColor: '#1f2937',
-    lightColor: 'rgba(148,163,184,0.7)',
-    ambientText: '유리창 너머 야경과 함께 긴 잔과 양주병이 정갈하게 놓여 있다.',
-    snack: '카나페, 치즈',
-    reactionTone: ['창밖 불빛이 잔 표면에 길게 비친다.', '라운지 조명이 병의 윤곽을 부드럽게 감싼다.', '조용한 공간이 더 깊어지는 느낌이다.'],
+    name: '막걸리집',
+    bg: 'from-stone-950 via-yellow-950 to-neutral-950',
+    tableColor: '#4a3a22',
+    lightColor: 'rgba(250,204,21,0.62)',
+    ambientText: '나무 테이블 위에 막걸리 병과 잔이 전 접시 옆에 놓여 있다.',
+    snack: '파전, 두부김치',
+    reactionTone: ['막걸리 잔이 뽀얗게 차오른다.', '파전 냄새가 테이블 위로 퍼진다.', '편하고 구수한 분위기가 살아난다.'],
   },
   soft: {
     name: '분식집',
@@ -148,7 +148,7 @@ function BottleVisual({ drink, pouring }: { drink: Drink; pouring: boolean }) {
             <rect x="0" y="82" width="58" height="74" fill="rgba(220,240,255,0.28)" clipPath="url(#soju-liquid)" />
             <ellipse cx="29" cy="26" rx="15" ry="4.2" fill="rgba(255,255,255,0.16)" />
             <rect x="15" y="66" width="28" height="44" rx="8" fill="#f5f7ed" opacity="0.97" />
-            <text x="29" y="90" textAnchor="middle" fill="#166534" fontSize="7.5" fontWeight="700">참이슬</text>
+            <text x="29" y="90" textAnchor="middle" fill="#166534" fontSize="7.5" fontWeight="700">침이슬</text>
             <text x="29" y="102" textAnchor="middle" fill="#166534" fontSize="4.8" fontWeight="700">후레쉬</text>
           </svg>
         </motion.div>
@@ -160,12 +160,12 @@ function BottleVisual({ drink, pouring }: { drink: Drink; pouring: boolean }) {
   }
 
   const body = drink.id === 'beer'
-    ? <svg viewBox="0 0 52 140" className="w-36 h-[28rem]" overflow="visible"><rect x="20" y="0" width="12" height="10" rx="2" fill="#fbbf24" /><rect x="17" y="10" width="18" height="11" rx="3" fill="#7c4a12" /><path d="M15 20 H37 L40 120 Q40 132 26 132 Q12 132 12 120 Z" fill="#754312" /><rect x="16" y="74" width="20" height="34" rx="4" fill="#f8ebc8" opacity="0.9" /><text x="26" y="92" textAnchor="middle" fill="#7c4a12" fontSize="6" fontWeight="700">맥주</text></svg>
+    ? <svg viewBox="0 0 52 140" className="w-36 h-[28rem]" overflow="visible"><rect x="20" y="0" width="12" height="10" rx="2" fill="#fbbf24" /><rect x="17" y="10" width="18" height="11" rx="3" fill="#7c4a12" /><path d="M15 20 H37 L40 120 Q40 132 26 132 Q12 132 12 120 Z" fill="#754312" /><rect x="16" y="74" width="20" height="34" rx="4" fill="#f8ebc8" opacity="0.9" /><text x="26" y="92" textAnchor="middle" fill="#7c4a12" fontSize="6" fontWeight="700">태라</text></svg>
     : drink.id === 'whiskey'
-    ? <svg viewBox="0 0 68 140" className="w-40 h-[28rem]" overflow="visible"><rect x="26" y="0" width="16" height="15" rx="2" fill="#d4a017" /><path d="M16 18 H52 V42 L58 52 V120 Q58 134 34 134 Q10 134 10 120 V52 L16 42 Z" fill="#593116" /><rect x="18" y="58" width="32" height="40" rx="4" fill="#efe2b8" opacity="0.92" /><text x="34" y="76" textAnchor="middle" fill="#4a2c14" fontSize="5.8" fontWeight="700">위스키</text></svg>
+    ? <svg viewBox="0 0 68 140" className="w-40 h-[28rem]" overflow="visible"><rect x="26" y="0" width="16" height="15" rx="2" fill="#d4a017" /><path d="M16 18 H52 V42 L58 52 V120 Q58 134 34 134 Q10 134 10 120 V52 L16 42 Z" fill="#593116" /><rect x="18" y="58" width="32" height="40" rx="4" fill="#efe2b8" opacity="0.92" /><text x="34" y="76" textAnchor="middle" fill="#4a2c14" fontSize="5.8" fontWeight="700">진빔</text></svg>
     : drink.id === 'yangju'
-    ? <svg viewBox="0 0 62 140" className="w-40 h-[28rem]" overflow="visible"><rect x="24" y="0" width="14" height="14" rx="2" fill="#d1d5db" /><path d="M18 18 H44 L48 120 Q48 134 31 134 Q14 134 14 120 Z" fill="#18314f" /><rect x="18" y="60" width="26" height="42" rx="4" fill="#e8ecf3" opacity="0.9" /><text x="31" y="82" textAnchor="middle" fill="#1e293b" fontSize="5.2" fontWeight="700">양주</text></svg>
-    : <svg viewBox="0 0 54 140" className="w-36 h-[28rem]" overflow="visible"><rect x="10" y="12" width="34" height="108" rx="10" fill="#c81e1e" /><rect x="12" y="8" width="30" height="10" rx="5" fill="#d1d5db" /><text x="27" y="72" textAnchor="middle" fill="rgba(255,255,255,0.9)" fontSize="7.5" fontWeight="700">콜라</text></svg>;
+    ? <svg viewBox="0 0 70 140" className="w-40 h-[28rem]" overflow="visible"><rect x="20" y="2" width="30" height="14" rx="5" fill="#e7dcc2" /><path d="M18 14 H52 L57 112 Q57 130 35 130 Q13 130 13 112 Z" fill="#f3ead0" stroke="rgba(120,92,45,0.35)" strokeWidth="2" /><rect x="16" y="78" width="38" height="42" fill="rgba(245,238,214,0.88)" /><rect x="18" y="54" width="34" height="34" rx="8" fill="#fff7df" opacity="0.96" /><text x="35" y="75" textAnchor="middle" fill="#7c5c22" fontSize="6" fontWeight="700">막걸리</text><ellipse cx="35" cy="132" rx="21" ry="5" fill="rgba(0,0,0,0.16)" /></svg>
+    : <svg viewBox="0 0 54 140" className="w-36 h-[28rem]" overflow="visible"><rect x="10" y="12" width="34" height="108" rx="10" fill="#c81e1e" /><rect x="12" y="8" width="30" height="10" rx="5" fill="#d1d5db" /><text x="27" y="72" textAnchor="middle" fill="rgba(255,255,255,0.9)" fontSize="7.5" fontWeight="700">코라</text></svg>;
 
   return <motion.div {...motionProps}>{body}</motion.div>;
 }
@@ -179,11 +179,11 @@ function ActionBtn({ onClick, disabled, label, active, highlight }: { onClick: (
 }
 
 function SceneDecor({ drinkId }: { drinkId: DrinkId }) {
-  if (drinkId === 'soju') return <><div className="absolute inset-x-0 top-0 h-44 bg-[radial-gradient(circle_at_top,rgba(255,189,89,0.3),transparent_62%)]" /><div className="absolute right-10 top-21 text-[11px] tracking-[0.35em] text-red-100/35">포차</div></>;
-  if (drinkId === 'beer') return <><div className="absolute inset-x-0 top-0 h-44 bg-[radial-gradient(circle_at_top,rgba(251,191,36,0.22),transparent_60%)]" /><div className="absolute right-14 top-17 text-base tracking-[0.3em] text-yellow-100/45">호프</div></>;
-  if (drinkId === 'whiskey') return <div className="absolute inset-x-0 top-0 h-44 bg-[radial-gradient(circle_at_top,rgba(180,83,9,0.18),transparent_58%)]" />;
-  if (drinkId === 'yangju') return <div className="absolute inset-x-0 top-0 h-44 bg-[radial-gradient(circle_at_top,rgba(148,163,184,0.18),transparent_60%)]" />;
-  return <div className="absolute inset-x-0 top-0 h-44 bg-[radial-gradient(circle_at_top,rgba(248,113,113,0.18),transparent_60%)]" />;
+  if (drinkId === 'soju') return <><div className="absolute inset-x-0 top-0 h-44 pointer-events-none bg-[radial-gradient(circle_at_top,rgba(255,189,89,0.3),transparent_62%)]" /><div className="absolute right-10 top-21 pointer-events-none text-[11px] tracking-[0.35em] text-red-100/35">포차</div></>;
+  if (drinkId === 'beer') return <><div className="absolute inset-x-0 top-0 h-44 pointer-events-none bg-[radial-gradient(circle_at_top,rgba(251,191,36,0.22),transparent_60%)]" /><div className="absolute right-14 top-17 pointer-events-none text-base tracking-[0.3em] text-yellow-100/45">호프</div></>;
+  if (drinkId === 'whiskey') return <div className="absolute inset-x-0 top-0 h-44 pointer-events-none bg-[radial-gradient(circle_at_top,rgba(180,83,9,0.18),transparent_58%)]" />;
+  if (drinkId === 'yangju') return <div className="absolute inset-x-0 top-0 h-44 pointer-events-none bg-[radial-gradient(circle_at_top,rgba(148,163,184,0.18),transparent_60%)]" />;
+  return <div className="absolute inset-x-0 top-0 h-44 pointer-events-none bg-[radial-gradient(circle_at_top,rgba(248,113,113,0.18),transparent_60%)]" />;
 }
 function MainScreen() {
   const [currentDrink, setCurrentDrink] = useState<DrinkId>('soju');
@@ -196,7 +196,6 @@ function MainScreen() {
   const [statusText, setStatusText] = useState(DRINK_SCENES.soju.ambientText);
   const [flashKey, setFlashKey] = useState(0);
   const [newSnack, setNewSnack] = useState('');
-  const [screenTilt, setScreenTilt] = useState(0);
   const [drinkChanging, setDrinkChanging] = useState(false);
   const autoRefillScheduled = useRef(false);
 
@@ -244,10 +243,9 @@ function MainScreen() {
     if (glassState === 'drinking') return;
     setGlassState('drinking');
     flash('원샷 -');
-    setScreenTilt(drinkCount % 2 === 0 ? 2.3 : -2.3);
     setTimeout(() => {
       const nextCount = drinkCount + 1;
-      setFillLevel(0); setDrinkCount(nextCount); setGlassState('empty'); setScreenTilt(0); flash(drink.moodLines[Math.min(nextCount - 1, drink.moodLines.length - 1)]); triggerRandomEvent();
+      setFillLevel(0); setDrinkCount(nextCount); setGlassState('empty'); flash(drink.moodLines[Math.min(nextCount - 1, drink.moodLines.length - 1)]); triggerRandomEvent();
     }, 980);
   };
 
@@ -255,19 +253,18 @@ function MainScreen() {
     if (fillLevel === 0 || glassState === 'drinking') return;
     setGlassState('drinking');
     flash('한모금 -');
-    setScreenTilt(drinkCount % 2 === 0 ? 1.4 : -1.4);
     setTimeout(() => {
       const next = Math.max(fillLevel - Math.min(fillLevel, 0.2), 0);
       const nextCount = drinkCount + 1;
-      setFillLevel(next); setDrinkCount(nextCount); setGlassState(next <= 0.05 ? 'empty' : 'poured'); setScreenTilt(0); flash(drink.moodLines[Math.min(nextCount - 1, drink.moodLines.length - 1)]); triggerRandomEvent();
+      setFillLevel(next); setDrinkCount(nextCount); setGlassState(next <= 0.05 ? 'empty' : 'poured'); flash(drink.moodLines[Math.min(nextCount - 1, drink.moodLines.length - 1)]); triggerRandomEvent();
     }, 860);
   };
 
   const handleToast = () => {
     if (fillLevel === 0) return flash('잔이 비어 있어서 짠할 수 없다.');
     if (isCheersing || glassState === 'drinking') return;
-    setIsCheersing(true); setGlassState('toasting'); setScreenTilt(2.8); flash('짠!');
-    setTimeout(() => { setIsCheersing(false); setGlassState('poured'); setScreenTilt(0); setFillLevel((prev) => Math.max(prev - 0.06, 0)); flash(scene.reactionTone[Math.floor(Math.random() * scene.reactionTone.length)]); }, 1350);
+    setIsCheersing(true); setGlassState('toasting'); flash('짠!');
+    setTimeout(() => { setIsCheersing(false); setGlassState('poured'); setFillLevel((prev) => Math.max(prev - 0.06, 0)); flash(scene.reactionTone[Math.floor(Math.random() * scene.reactionTone.length)]); }, 1350);
   };
 
   const handleChangeDrink = (id: DrinkId) => {
@@ -277,24 +274,24 @@ function MainScreen() {
   };
 
   return (
-    <motion.div animate={{ rotate: screenTilt }} transition={{ type: 'spring', stiffness: 280, damping: 22 }} className={`min-h-screen bg-gradient-to-b ${scene.bg} flex flex-col overflow-hidden relative`} style={{ filter: blurAmount > 0 ? `blur(${blurAmount}px)` : undefined }}>
+    <motion.div className={`min-h-screen bg-gradient-to-b ${scene.bg} flex flex-col overflow-hidden relative`} style={{ filter: blurAmount > 0 ? `blur(${blurAmount}px)` : undefined }}>
       <SceneDecor drinkId={currentDrink} />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[24rem] h-56 rounded-full opacity-25" style={{ background: `radial-gradient(ellipse, ${scene.lightColor}, transparent)` }} />
-      <div className="relative z-10 flex justify-between items-center px-6 pt-8 pb-3"><span className="text-white/25 text-base tracking-[0.25em]">{scene.name}</span><span className="text-white/35 text-lg font-medium">{drink.name}</span>{drinkCount > 0 && <span className="text-white/28 text-base">{drinkCount}잔째</span>}</div>
-      <div className="min-h-16 flex items-center justify-center px-8 mt-1 mb-2"><AnimatePresence mode="wait"><motion.p key={flashKey} initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }} className="text-white/60 text-lg tracking-wide leading-relaxed text-center">{statusText}</motion.p></AnimatePresence></div>
-      {newSnack && <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center text-white/35 text-base mb-2">{newSnack}</motion.p>}
-      <div className="w-full px-5 mt-2"><div className="flex gap-3 justify-center flex-wrap">{drinkIds.map((id) => <motion.button key={id} whileTap={{ scale: 0.95 }} onClick={() => handleChangeDrink(id)} className={`px-5 py-3 rounded-full text-base font-medium transition-all duration-200 border ${currentDrink === id ? 'bg-white/18 border-white/30 text-white/90' : 'bg-white/[0.05] border-white/10 text-white/40 hover:bg-white/10 hover:text-white/65'}`}>{DRINKS[id].name}</motion.button>)}</div></div>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[24rem] h-56 rounded-full opacity-25 pointer-events-none" style={{ background: `radial-gradient(ellipse, ${scene.lightColor}, transparent)` }} />
+      <div className="relative z-10 flex justify-between items-center px-5 pt-5 pb-2"><span className="text-white/25 text-sm tracking-[0.25em]">{scene.name}</span><span className="text-white/35 text-base font-medium">{drink.name}</span>{drinkCount > 0 && <span className="text-white/28 text-sm">{drinkCount}잔째</span>}</div>
+      <div className="min-h-12 flex items-center justify-center px-8 mt-1 mb-1"><AnimatePresence mode="wait"><motion.p key={flashKey} initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }} className="text-white/60 text-base tracking-wide leading-relaxed text-center">{statusText}</motion.p></AnimatePresence></div>
+      {newSnack && <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center text-white/35 text-sm mb-1">{newSnack}</motion.p>}
+      <div className="relative z-20 w-full px-5 mt-1"><div className="flex gap-2 justify-center flex-wrap">{drinkIds.map((id) => <motion.button key={id} whileTap={{ scale: 0.95 }} onClick={() => handleChangeDrink(id)} className={`px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-200 border ${currentDrink === id ? 'bg-white/18 border-white/30 text-white/90' : 'bg-white/[0.05] border-white/10 text-white/40 hover:bg-white/10 hover:text-white/65'}`}>{DRINKS[id].name}</motion.button>)}</div></div>
       <div className="flex-1 flex flex-col items-center justify-end">
         <div className="w-full relative" style={{ background: `linear-gradient(to bottom, ${scene.tableColor}99, ${scene.tableColor}f2)` }}>
-          <div className="absolute right-5 top-4"><div className="w-32 h-16 rounded-2xl bg-white/5 border border-white/[0.08] flex items-center justify-center"><span className="text-white/30 text-base text-center leading-tight px-2">{scene.snack.split(',')[0].trim()}</span></div></div>
-          <AnimatePresence>{autoRefillPending && <motion.div initial={{ opacity: 0 }} animate={{ opacity: [0.2, 0.55, 0.2] }} transition={{ repeat: Infinity, duration: 1.1 }} exit={{ opacity: 0 }} className="absolute top-4 left-6 text-white/35 text-base tracking-[0.2em]">자동 리필 중</motion.div>}</AnimatePresence>
-          <div className="flex items-end justify-center gap-28 pt-16 pb-12 px-6">
+          <div className="absolute right-4 top-3"><div className="w-28 h-14 rounded-2xl bg-white/5 border border-white/[0.08] flex items-center justify-center"><span className="text-white/30 text-sm text-center leading-tight px-2">{scene.snack.split(',')[0].trim()}</span></div></div>
+          <AnimatePresence>{autoRefillPending && <motion.div initial={{ opacity: 0 }} animate={{ opacity: [0.2, 0.55, 0.2] }} transition={{ repeat: Infinity, duration: 1.1 }} exit={{ opacity: 0 }} className="absolute top-3 left-5 text-white/35 text-sm tracking-[0.2em]">자동 리필 중</motion.div>}</AnimatePresence>
+          <div className="flex items-end justify-center gap-16 pt-8 pb-6 px-5 scale-[0.82] origin-bottom">
             <AnimatePresence mode="wait"><motion.div key={`bottle-${currentDrink}`} initial={{ opacity: 0, scale: 0.88 }} animate={{ opacity: drinkChanging ? 0 : 1, scale: drinkChanging ? 0.88 : 1 }} transition={{ duration: 0.25 }}><BottleVisual drink={drink} pouring={isPouring} /></motion.div></AnimatePresence>
-            <div className="flex flex-col items-center gap-5"><AnimatePresence mode="wait"><motion.div key={`glass-${currentDrink}`} initial={{ opacity: 0, scale: 0.85 }} animate={{ opacity: drinkChanging ? 0 : 1, scale: drinkChanging ? 0.85 : 1 }} transition={{ duration: 0.25 }}><GlassVisual drink={drink} fillLevel={fillLevel} state={glassState} /></motion.div></AnimatePresence><div className="flex gap-3">{[0.2, 0.45, 0.7, 0.95].map((level) => <div key={level} className={`w-3 h-3 rounded-full transition-all duration-500 ${fillLevel >= level ? 'bg-white/55' : 'bg-white/10'}`} />)}</div></div>
+            <div className="flex flex-col items-center gap-4"><AnimatePresence mode="wait"><motion.div key={`glass-${currentDrink}`} initial={{ opacity: 0, scale: 0.85 }} animate={{ opacity: drinkChanging ? 0 : 1, scale: drinkChanging ? 0.85 : 1 }} transition={{ duration: 0.25 }}><GlassVisual drink={drink} fillLevel={fillLevel} state={glassState} /></motion.div></AnimatePresence><div className="flex gap-3">{[0.2, 0.45, 0.7, 0.95].map((level) => <div key={level} className={`w-3 h-3 rounded-full transition-all duration-500 ${fillLevel >= level ? 'bg-white/55' : 'bg-white/10'}`} />)}</div></div>
             <AnimatePresence>{isCheersing && <motion.div initial={{ opacity: 0, x: 48, scale: 0.7, rotate: -16 }} animate={{ opacity: 0.72, x: 0, scale: 1.12, rotate: -8 }} exit={{ opacity: 0, x: 48, scale: 0.7, rotate: -16 }} transition={{ type: 'spring', stiffness: 340, damping: 18 }} style={{ position: 'absolute', right: 22, bottom: 52 }}><svg viewBox="0 0 46 86" className="w-16 h-28"><clipPath id="toast-ghost-clip"><path d="M7 8 Q23 2 39 8 L34 78 Q23 84 12 78 Z" /></clipPath><rect x="0" y="18" width="46" height="68" fill="rgba(180,180,255,0.34)" clipPath="url(#toast-ghost-clip)" /><path d="M7 8 Q23 2 39 8 L34 78 Q23 84 12 78 Z" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="2" /></svg></motion.div>}</AnimatePresence>
           </div>
         </div>
-        <div className="w-full max-w-2xl px-5 mt-5 grid grid-cols-3 gap-4"><ActionBtn onClick={handleShot} disabled={fillLevel === 0 || glassState === 'drinking' || isPouring || autoRefillPending} label="원샷" active={glassState === 'drinking'} /><ActionBtn onClick={handleSip} disabled={fillLevel === 0 || glassState === 'drinking' || isPouring || autoRefillPending} label="한모금" active={glassState === 'drinking'} highlight /><ActionBtn onClick={handleToast} disabled={fillLevel === 0 || isCheersing || glassState === 'drinking' || autoRefillPending} label="짠!" active={isCheersing} /></div>
+        <div className="w-full max-w-2xl px-5 mt-3 pb-4 grid grid-cols-3 gap-3"><ActionBtn onClick={handleShot} disabled={fillLevel === 0 || glassState === 'drinking' || isPouring || autoRefillPending} label="원샷" active={glassState === 'drinking'} /><ActionBtn onClick={handleSip} disabled={fillLevel === 0 || glassState === 'drinking' || isPouring || autoRefillPending} label="한모금" active={glassState === 'drinking'} highlight /><ActionBtn onClick={handleToast} disabled={fillLevel === 0 || isCheersing || glassState === 'drinking' || autoRefillPending} label="짠!" active={isCheersing} /></div>
       </div>
     </motion.div>
   );
