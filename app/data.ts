@@ -1,6 +1,6 @@
 export type DrinkState = 'empty' | 'poured' | 'lifted' | 'drinking' | 'toasting';
 
-export type DrinkId = 'soju' | 'beer' | 'whiskey' | 'yangju' | 'soft';
+export type DrinkId = 'soju' | 'beer' | 'whiskey' | 'yangju';
 
 export type AmbienceId = 'pocha' | 'hof' | 'bar' | 'home';
 
@@ -139,33 +139,6 @@ export const DRINKS: Record<DrinkId, Drink> = {
       '전 냄새와 막걸리 향이 같이 퍼진다.',
       '편하고 구수한 분위기다.',
       '한 잔 더 나눠 마시기 좋다.',
-    ],
-  },
-  soft: {
-    id: 'soft',
-    name: '콜라',
-    glassType: 'cup',
-    bottleColor: '#dc2626',
-    liquidColor: 'rgba(220,50,50,0.7)',
-    foamy: false,
-    label: '코라',
-    pourLabel: '콜라를 다시 따른다.',
-    drinkLabel: '한 모금',
-    toastLabel: '짠!',
-    liftLabel: '잔을 든다',
-    emptyLabel: '컵이 비어 있다.',
-    moodLines: [
-      '탄산이 톡 하고 올라온다.',
-      '가볍게 한 모금 넘긴다.',
-      '분식집 분위기와 잘 붙는다.',
-      '속도감 있게 분위기가 산다.',
-      '시원하게 계속 들어간다.',
-    ],
-    reactions: [
-      '탄산 거품이 빠르게 올라온다.',
-      '컵 가장자리에 작은 물방울이 맺힌다.',
-      '가볍고 산뜻한 흐름이다.',
-      '분식집 조명 아래 더 선명해 보인다.',
     ],
   },
 };
