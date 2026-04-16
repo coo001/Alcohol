@@ -1,7 +1,7 @@
 ﻿'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useMotionValue, animate as fmAnimate } from 'framer-motion';
 import { DRINKS, RANDOM_EVENTS, type Drink, type DrinkId, type DrinkState } from './data';
 
 const DRINK_SCENES: Record<DrinkId, {
@@ -66,6 +66,7 @@ function GlassVisual({ drink, fillLevel, state }: { drink: Drink; fillLevel: num
           <clipPath id="shot-clip"><path d="M23 18 Q46 9 69 18 L62 78 H30 Z" /></clipPath>
         </defs>
         {fillLevel > 0 && <rect x="0" y={18 + 58 * (1 - fillLevel)} width="92" height={58 * fillLevel} fill={drink.liquidColor} clipPath="url(#shot-clip)" />}
+        {state === 'drinking' && fillLevel > 0.04 && <motion.ellipse cx={46} cy={18 + 58 * (1 - fillLevel)} rx={20} ry={1} fill="rgba(255,255,255,0.28)" clipPath="url(#shot-clip)" animate={{ ry: [0.4, 2.6, 0.3, 2.0, 0.4] }} transition={{ duration: 0.24, repeat: Infinity, ease: 'linear' }} />}
         <ellipse cx="46" cy="18" rx="23" ry="7" fill="rgba(255,255,255,0.24)" stroke="rgba(255,255,255,0.6)" strokeWidth="1.8" />
         <path d="M23 18 Q46 9 69 18 L62 78 H30 Z" fill="url(#shot-body)" stroke="rgba(255,255,255,0.66)" strokeWidth="2.4" />
         <path d="M30 78 H62" stroke="rgba(255,255,255,0.52)" strokeWidth="5" strokeLinecap="round" />
@@ -83,6 +84,7 @@ function GlassVisual({ drink, fillLevel, state }: { drink: Drink; fillLevel: num
           <clipPath id="beer-clip"><path d="M16 16 L58 16 L54 116 L22 116 Z" /></clipPath>
         </defs>
         {fillLevel > 0 && <rect x="0" y={16 + 100 * (1 - fillLevel)} width="78" height={100 * fillLevel} fill={drink.liquidColor} clipPath="url(#beer-clip)" />}
+        {state === 'drinking' && fillLevel > 0.04 && <motion.ellipse cx={37} cy={16 + 100 * (1 - fillLevel)} rx={18} ry={1} fill="rgba(255,255,255,0.24)" clipPath="url(#beer-clip)" animate={{ ry: [0.4, 2.2, 0.3, 1.8, 0.4] }} transition={{ duration: 0.24, repeat: Infinity, ease: 'linear' }} />}
         {fillLevel > 0.15 && drink.foamy && <ellipse cx="37" cy={16 + 100 * (1 - fillLevel) + 6} rx="22" ry="8" fill="rgba(255,255,255,0.94)" />}
         <path d="M16 16 L58 16 L54 116 L22 116 Z" fill="url(#beer-glass)" stroke="rgba(255,255,255,0.52)" strokeWidth="2.2" />
         <path d="M59 34 Q76 34 76 66 Q76 98 59 98" fill="none" stroke="rgba(255,255,255,0.44)" strokeWidth="6" strokeLinecap="round" />
@@ -98,6 +100,7 @@ function GlassVisual({ drink, fillLevel, state }: { drink: Drink; fillLevel: num
           <clipPath id="rocks-clip"><path d="M16 9 H80 L74 72 Q69 78 48 78 Q27 78 22 72 Z" /></clipPath>
         </defs>
         {fillLevel > 0 && <rect x="0" y={13 + 58 * (1 - fillLevel)} width="96" height={58 * fillLevel} fill={drink.liquidColor} clipPath="url(#rocks-clip)" />}
+        {state === 'drinking' && fillLevel > 0.04 && <motion.ellipse cx={48} cy={13 + 58 * (1 - fillLevel)} rx={26} ry={1} fill="rgba(255,255,255,0.22)" clipPath="url(#rocks-clip)" animate={{ ry: [0.4, 2.4, 0.3, 1.8, 0.4] }} transition={{ duration: 0.24, repeat: Infinity, ease: 'linear' }} />}
         {fillLevel > 0.18 && <><rect x="31" y="31" width="16" height="14" rx="3" fill="rgba(220,240,255,0.45)" clipPath="url(#rocks-clip)" /><rect x="50" y="27" width="14" height="13" rx="3" fill="rgba(220,240,255,0.38)" clipPath="url(#rocks-clip)" /></>}
         <path d="M16 9 H80 L74 72 Q69 78 48 78 Q27 78 22 72 Z" fill="url(#rocks-body)" stroke="rgba(255,255,255,0.54)" strokeWidth="2.6" />
         <path d="M23 70 Q48 77 73 70" stroke="rgba(255,255,255,0.36)" strokeWidth="5" strokeLinecap="round" fill="none" />
@@ -127,6 +130,7 @@ function GlassVisual({ drink, fillLevel, state }: { drink: Drink; fillLevel: num
         <path d="M12 23 Q48 11 84 23 L75 60 Q66 72 48 72 Q30 72 21 60 Z" fill="url(#makgeolli-bowl)" stroke="rgba(245,245,235,0.52)" strokeWidth="2.6" />
         <path d="M18 27 Q48 18 78 27 L72 58 Q65 68 48 68 Q31 68 24 58 Z" fill="url(#makgeolli-metal-shine)" opacity="0.72" />
         {fillLevel > 0 && <rect x="0" y={25 + 34 * (1 - fillLevel)} width="96" height={34 * fillLevel} fill={drink.liquidColor} opacity="0.9" clipPath="url(#makgeolli-clip)" />}
+        {state === 'drinking' && fillLevel > 0.04 && <motion.ellipse cx={48} cy={25 + 34 * (1 - fillLevel)} rx={22} ry={1} fill="rgba(255,250,220,0.3)" clipPath="url(#makgeolli-clip)" animate={{ ry: [0.4, 2.0, 0.3, 1.6, 0.4] }} transition={{ duration: 0.24, repeat: Infinity, ease: 'linear' }} />}
         <ellipse cx="48" cy={25 + 34 * (1 - fillLevel)} rx="27" ry="7" fill="rgba(255,250,230,0.75)" clipPath="url(#makgeolli-clip)" />
         <ellipse cx="48" cy="23" rx="36" ry="12" fill="none" stroke="#ece7da" strokeWidth="5" />
         <ellipse cx="48" cy="23" rx="29" ry="8" fill="none" stroke="rgba(80,76,68,0.42)" strokeWidth="1.8" />
@@ -192,6 +196,65 @@ function BottleVisual({ drink, pouring }: { drink: Drink; pouring: boolean }) {
   return <motion.div {...motionProps}>{body}</motion.div>;
 }
 
+// 술병→잔 스트림 좌표 (병 기울임 36° + translate(10,-10) 기준, 스케일 전 실제 픽셀)
+const POUR_STREAM: Record<DrinkId, { x1: number; y1: number; cx: number; cy: number; x2: number; y2: number; w: number; h: number }> = {
+  soju:    { x1: 372, y1:  82, cx: 380, cy: 155, x2: 384, y2: 216, w: 496, h: 480 },
+  beer:    { x1: 345, y1: 103, cx: 374, cy: 148, x2: 400, y2: 120, w: 544, h: 476 },
+  whiskey: { x1: 353, y1:  76, cx: 390, cy: 128, x2: 416, y2: 164, w: 560, h: 448 },
+  yangju:  { x1: 353, y1:  76, cx: 388, cy: 112, x2: 416, y2: 131, w: 560, h: 448 },
+};
+
+function PourStream({ drink }: { drink: Drink }) {
+  const s = POUR_STREAM[drink.id];
+  const d = `M ${s.x1} ${s.y1} Q ${s.cx} ${s.cy} ${s.x2} ${s.y2}`;
+  const liq = drink.liquidColor;
+  return (
+    <motion.svg
+      className="absolute pointer-events-none"
+      style={{ left: 0, top: 0, width: s.w, height: s.h, zIndex: 25 }}
+      overflow="visible"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.15 }}
+    >
+      {/* 술 흐름 - 병 입구에서 잔까지 그려짐 */}
+      <motion.path
+        d={d}
+        fill="none"
+        stroke={liq}
+        strokeWidth="5"
+        strokeLinecap="round"
+        initial={{ pathLength: 0 }}
+        animate={{ pathLength: 1 }}
+        transition={{ duration: 0.22, ease: 'easeOut' }}
+      />
+      {/* 반짝이는 흐름 효과 */}
+      <path
+        d={d}
+        fill="none"
+        stroke="rgba(255,255,255,0.4)"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeDasharray="6 14"
+        style={{ animation: 'pourFlow 0.32s linear infinite', animationDelay: '0.22s' }}
+      />
+      {/* 잔에 닿는 물방울 */}
+      {([-5, 0, 5] as const).map((dx, i) => (
+        <motion.circle
+          key={i}
+          cx={s.x2 + dx}
+          cy={s.y2}
+          r={2.8}
+          fill={liq}
+          animate={{ opacity: [0, 0.85, 0], scale: [0.3, 1.3, 0] }}
+          transition={{ duration: 0.42, repeat: Infinity, delay: 0.22 + i * 0.14, ease: 'easeOut' }}
+        />
+      ))}
+    </motion.svg>
+  );
+}
+
 function ActionBtn({ onClick, disabled, label, active, highlight }: { onClick: () => void; disabled: boolean; label: string; active?: boolean; highlight?: boolean }) {
   return (
     <motion.button whileTap={disabled ? {} : { scale: 0.95 }} onClick={onClick} disabled={disabled} className={`py-5 rounded-2xl text-lg font-medium tracking-wide transition-all duration-200 border ${disabled ? 'bg-white/[0.04] border-white/5 text-white/20 cursor-not-allowed' : active ? 'bg-white/28 border-white/40 text-white shadow-lg' : highlight ? 'bg-white/16 border-white/28 text-white hover:bg-white/20' : 'bg-white/[0.08] border-white/15 text-white/75 hover:bg-white/14'}`}>
@@ -225,6 +288,11 @@ function MainScreen() {
   const [newSnack, setNewSnack] = useState('');
   const [drinkChanging, setDrinkChanging] = useState(false);
   const autoRefillScheduled = useRef(false);
+
+  // 시각적 채움 레벨 - 부드러운 애니메이션용
+  const visualFill = useMotionValue(0);
+  const [renderFill, setRenderFill] = useState(0);
+  useEffect(() => visualFill.on('change', setRenderFill), [visualFill]);
 
   const drink = DRINKS[currentDrink];
   const scene = DRINK_SCENES[currentDrink];
@@ -260,7 +328,7 @@ function MainScreen() {
       autoRefillScheduled.current = true;
       const t1 = setTimeout(() => { setAutoRefillPending(true); setIsPouring(true); flash(drink.pourLabel); }, 450);
       const t2 = setTimeout(() => {
-        setFillLevel(0.92); setGlassState('poured'); setIsPouring(false); setAutoRefillPending(false); autoRefillScheduled.current = false; flash(scene.ambientText);
+        setFillLevel(0.92); fmAnimate(visualFill, 0.92, { duration: 0.45, ease: 'easeOut' }); setGlassState('poured'); setIsPouring(false); setAutoRefillPending(false); autoRefillScheduled.current = false; flash(scene.ambientText);
       }, 1450);
       return () => { clearTimeout(t1); clearTimeout(t2); autoRefillScheduled.current = false; };
     }
@@ -271,6 +339,14 @@ function MainScreen() {
     if (glassState === 'drinking') return;
     setGlassState('drinking');
     flash('원샷 -');
+    // 잔이 기울자마자 술이 바로 입으로 들어옴 — 짧은 딜레이 후 일정한 속도로 비워짐
+    const shotStart = visualFill.get();
+    fmAnimate(visualFill, [shotStart, shotStart * 0.96, 0], {
+      times: [0, 0.18, 1],
+      duration: 0.62,
+      delay: 0.18,
+      ease: ['easeOut', 'linear'],
+    });
     setTimeout(() => {
       const drinkId = currentDrink;
       const nextCount = drinkCounts[drinkId] + 1;
@@ -282,8 +358,10 @@ function MainScreen() {
     if (fillLevel === 0 || glassState === 'drinking') return;
     setGlassState('drinking');
     flash('한모금 -');
+    const next = Math.max(fillLevel - Math.min(fillLevel, 0.2), 0);
+    // 한 모금: 입에 닿는 순간부터 자연스럽게 삼키고 멈춤
+    fmAnimate(visualFill, next, { duration: 0.38, delay: 0.14, ease: [0.22, 0, 0.42, 1] });
     setTimeout(() => {
-      const next = Math.max(fillLevel - Math.min(fillLevel, 0.2), 0);
       const isGlassEmpty = next <= 0.05;
       const drinkId = currentDrink;
       const nextCount = isGlassEmpty ? drinkCounts[drinkId] + 1 : drinkCounts[drinkId];
@@ -300,7 +378,7 @@ function MainScreen() {
 
   const handleChangeDrink = (id: DrinkId) => {
     if (id === currentDrink || drinkChanging) return;
-    setDrinkChanging(true); autoRefillScheduled.current = false; setAutoRefillPending(false); setIsPouring(false);
+    setDrinkChanging(true); autoRefillScheduled.current = false; setAutoRefillPending(false); setIsPouring(false); visualFill.set(0);
     setTimeout(() => { setCurrentDrink(id); setGlassState('empty'); setFillLevel(0); setStatusText(DRINK_SCENES[id].ambientText); setFlashKey((prev) => prev + 1); setDrinkChanging(false); }, 280);
   };
 
@@ -316,9 +394,12 @@ function MainScreen() {
         <div className="w-full relative" style={{ background: `linear-gradient(to bottom, ${scene.tableColor}99, ${scene.tableColor}f2)` }}>
           <div className="absolute right-4 top-3"><div className="w-28 h-14 rounded-2xl bg-white/5 border border-white/[0.08] flex items-center justify-center"><span className="text-white/30 text-sm text-center leading-tight px-2">{scene.snack.split(',')[0].trim()}</span></div></div>
           <AnimatePresence>{autoRefillPending && <motion.div initial={{ opacity: 0 }} animate={{ opacity: [0.2, 0.55, 0.2] }} transition={{ repeat: Infinity, duration: 1.1 }} exit={{ opacity: 0 }} className="absolute top-3 left-5 text-white/35 text-sm tracking-[0.2em]">자동 리필 중</motion.div>}</AnimatePresence>
-          <div className="flex items-end justify-center gap-28 pt-8 pb-6 px-5 scale-[0.78] origin-bottom">
-            <AnimatePresence mode="wait"><motion.div key={`bottle-${currentDrink}`} initial={{ opacity: 0, scale: 0.88 }} animate={{ opacity: drinkChanging ? 0 : 1, scale: drinkChanging ? 0.88 : 1 }} transition={{ duration: 0.25 }}><BottleVisual drink={drink} pouring={isPouring} /></motion.div></AnimatePresence>
-            <div className="flex flex-col items-center gap-4"><AnimatePresence mode="wait"><motion.div key={`glass-${currentDrink}`} initial={{ opacity: 0, scale: 0.85 }} animate={{ opacity: drinkChanging ? 0 : 1, scale: drinkChanging ? 0.85 : 1 }} transition={{ duration: 0.25 }}><GlassVisual drink={drink} fillLevel={fillLevel} state={glassState} /></motion.div></AnimatePresence><div className="flex gap-3">{[0.2, 0.45, 0.7, 0.95].map((level) => <div key={level} className={`w-3 h-3 rounded-full transition-all duration-500 ${fillLevel >= level ? 'bg-white/55' : 'bg-white/10'}`} />)}</div></div>
+          <div className="flex items-end justify-center pt-8 pb-6 px-5 scale-[0.78] origin-bottom">
+            <div className="relative flex items-end gap-28">
+              <AnimatePresence mode="wait"><motion.div key={`bottle-${currentDrink}`} initial={{ opacity: 0, scale: 0.88 }} animate={{ opacity: drinkChanging ? 0 : 1, scale: drinkChanging ? 0.88 : 1 }} transition={{ duration: 0.25 }}><BottleVisual drink={drink} pouring={isPouring} /></motion.div></AnimatePresence>
+              <AnimatePresence>{isPouring && <PourStream key={`stream-${currentDrink}`} drink={drink} />}</AnimatePresence>
+              <div className="flex flex-col items-center gap-4"><AnimatePresence mode="wait"><motion.div key={`glass-${currentDrink}`} initial={{ opacity: 0, scale: 0.85 }} animate={{ opacity: drinkChanging ? 0 : 1, scale: drinkChanging ? 0.85 : 1 }} transition={{ duration: 0.25 }}><GlassVisual drink={drink} fillLevel={renderFill} state={glassState} /></motion.div></AnimatePresence><div className="flex gap-3">{[0.2, 0.45, 0.7, 0.95].map((level) => <div key={level} className={`w-3 h-3 rounded-full transition-all duration-500 ${fillLevel >= level ? 'bg-white/55' : 'bg-white/10'}`} />)}</div></div>
+            </div>
             <AnimatePresence>{isCheersing && <motion.div initial={{ opacity: 0, x: 48, scale: 0.7, rotate: -16 }} animate={{ opacity: 0.72, x: 0, scale: 1.12, rotate: -8 }} exit={{ opacity: 0, x: 48, scale: 0.7, rotate: -16 }} transition={{ type: 'spring', stiffness: 340, damping: 18 }} style={{ position: 'absolute', right: 22, bottom: 52 }}><svg viewBox="0 0 46 86" className="w-16 h-28"><clipPath id="toast-ghost-clip"><path d="M7 8 Q23 2 39 8 L34 78 Q23 84 12 78 Z" /></clipPath><rect x="0" y="18" width="46" height="68" fill="rgba(180,180,255,0.34)" clipPath="url(#toast-ghost-clip)" /><path d="M7 8 Q23 2 39 8 L34 78 Q23 84 12 78 Z" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="2" /></svg></motion.div>}</AnimatePresence>
           </div>
         </div>

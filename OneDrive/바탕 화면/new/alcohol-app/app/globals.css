@@ -15,3 +15,7 @@ body {
 * {
   -webkit-font-smoothing: antialiased;
 }
+
+@keyframes pourFlow {
+  to { stroke-dashoffset: -20; }
+}
