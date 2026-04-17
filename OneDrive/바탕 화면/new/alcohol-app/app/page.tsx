@@ -531,7 +531,7 @@ function MainScreen() {
   };
 
   return (
-    <motion.div className={`min-h-screen bg-gradient-to-b ${scene.bg} flex flex-col overflow-hidden relative`} style={{ filter: blurAmount > 0 ? `blur(${blurAmount}px)` : undefined }}>
+    <motion.div className={`h-screen bg-gradient-to-b ${scene.bg} flex flex-col overflow-hidden relative`} style={{ filter: blurAmount > 0 ? `blur(${blurAmount}px)` : undefined }}>
       <SceneDecor drinkId={currentDrink} />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[24rem] h-56 rounded-full opacity-25 pointer-events-none" style={{ background: `radial-gradient(ellipse, ${scene.lightColor}, transparent)` }} />
       <div className="relative z-10 flex items-center justify-between px-5 pt-5 pb-2">
@@ -548,7 +548,7 @@ function MainScreen() {
       <div className="min-h-12 flex items-center justify-center px-8 mt-1 mb-1"><AnimatePresence mode="wait"><motion.p key={flashKey} initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }} className="text-white/60 text-base tracking-wide leading-relaxed text-center">{statusText}</motion.p></AnimatePresence></div>
       {newSnack && <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center text-white/35 text-sm mb-1">{newSnack}</motion.p>}
       <div className="relative z-20 w-full px-5 mt-1"><div className="flex gap-2 justify-center flex-wrap">{drinkIds.map((id) => <motion.button key={id} whileTap={{ scale: 0.95 }} onClick={() => handleChangeDrink(id)} className={`px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-200 border ${currentDrink === id ? 'bg-white/18 border-white/30 text-white/90' : 'bg-white/[0.05] border-white/10 text-white/40 hover:bg-white/10 hover:text-white/65'}`}><span>{DRINKS[id].name}</span>{drinkCounts[id] > 0 && <span className="ml-2 text-white/70 tabular-nums">{drinkCounts[id]}잔</span>}</motion.button>)}</div></div>
-      <div className="flex-1 flex flex-col items-center justify-end">
+      <div className="flex-1 min-h-0 flex flex-col items-center justify-end overflow-hidden">
         <div className="w-full relative" style={{ background: `linear-gradient(to bottom, ${scene.tableColor}99, ${scene.tableColor}f2)` }}>
           <div className="absolute right-4 top-3"><div className="w-28 h-14 rounded-2xl bg-white/5 border border-white/[0.08] flex items-center justify-center"><span className="text-white/30 text-sm text-center leading-tight px-2">{scene.snack.split(',')[0].trim()}</span></div></div>
           <AnimatePresence>{autoRefillPending && <motion.div initial={{ opacity: 0 }} animate={{ opacity: [0.2, 0.55, 0.2] }} transition={{ repeat: Infinity, duration: 1.1 }} exit={{ opacity: 0 }} className="absolute top-3 left-5 text-white/35 text-sm tracking-[0.2em]">자동 리필 중</motion.div>}</AnimatePresence>
@@ -561,7 +561,7 @@ function MainScreen() {
             <AnimatePresence>{isCheersing && <CheersGlass key="cheers-glass" drink={drink} />}{isCheersing && <ClinkEffect key="clink-effect" />}</AnimatePresence>
           </div>
         </div>
-        <div className="w-full max-w-2xl px-5 mt-3 pb-4 grid grid-cols-3 gap-3"><ActionBtn onClick={handleShot} disabled={fillLevel === 0 || glassState === 'drinking' || isPouring || autoRefillPending} label="원샷" active={glassState === 'drinking'} /><ActionBtn onClick={handleSip} disabled={fillLevel === 0 || glassState === 'drinking' || isPouring || autoRefillPending} label="한모금" active={glassState === 'drinking'} highlight /><ActionBtn onClick={handleToast} disabled={fillLevel === 0 || isCheersing || glassState === 'drinking' || autoRefillPending} label="짠!" active={isCheersing} /></div>
+        <div className="w-full max-w-2xl px-5 mt-3 pb-4 grid grid-cols-3 gap-3 flex-shrink-0"><ActionBtn onClick={handleShot} disabled={fillLevel === 0 || glassState === 'drinking' || isPouring || autoRefillPending} label="원샷" active={glassState === 'drinking'} /><ActionBtn onClick={handleSip} disabled={fillLevel === 0 || glassState === 'drinking' || isPouring || autoRefillPending} label="한모금" active={glassState === 'drinking'} highlight /><ActionBtn onClick={handleToast} disabled={fillLevel === 0 || isCheersing || glassState === 'drinking' || autoRefillPending} label="짠!" active={isCheersing} /></div>
       </div>
     </motion.div>
   );
