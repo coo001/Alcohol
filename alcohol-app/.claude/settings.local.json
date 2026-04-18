@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "Bash(taskkill:*)",
+      "Bash(npx --yes kill-port 3000)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Bash(echo \"PID: $!\")",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(gh repo *)",
+      "Bash(gh api *)",
+      "Bash(mkdir -p '/c/Users/sukpo/OneDrive/바탕 화면/new/alcohol/alcohol-app' '/c/Users/sukpo/OneDrive/바탕 화면/new/alcohol/alcohol-mobile')",
+      "Bash(rsync -a --exclude=.git --exclude=node_modules '/c/Users/sukpo/OneDrive/바탕 화면/new/alcohol-app/' '/c/Users/sukpo/OneDrive/바탕 화면/new/alcohol/alcohol-app/')",
+      "Bash(cp -r '/c/Users/sukpo/OneDrive/바탕 화면/new/alcohol-app/.' '/c/Users/sukpo/OneDrive/바탕 화면/new/alcohol/alcohol-app/')",
+      "Bash(rm -rf '/c/Users/sukpo/OneDrive/바탕 화면/new/alcohol/alcohol-app/.git' '/c/Users/sukpo/OneDrive/바탕 화면/new/alcohol/alcohol-app/node_modules')",
+      "Bash(cmd /c \"rmdir /s /q \\\\\"C:\\\\Users\\\\sukpo\\\\OneDrive\\\\바탕 화면\\\\new\\\\alcohol\\\\alcohol-app\\\\node_modules\\\\\"\")",
+      "Bash(powershell *)"
+    ]
+  }
+}
