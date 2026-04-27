@@ -1,5 +1,6 @@
 ﻿'use client';
 
+// v1.1.0 — UI refinements
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useMotionValue, animate as fmAnimate } from 'framer-motion';
 import { DRINKS, RANDOM_EVENTS, type Drink, type DrinkId, type DrinkState } from './data';
